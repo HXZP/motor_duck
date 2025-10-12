@@ -78,7 +78,7 @@ static void I2C_NAck(void)
 }
 
 // 等待应答
-uint8_t I2C_Wait_Ack(void)
+static uint8_t I2C_Wait_Ack(void)
 {
     uint8_t ack;
     
@@ -168,6 +168,8 @@ static uint8_t I2C_Read_Byte(uint8_t ack)
     
     // 切换SDA回输出模式
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(I2C_SDA_PORT, &GPIO_InitStruct);
     
     // 发送应答/非应答

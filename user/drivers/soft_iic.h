@@ -13,6 +13,6 @@
 void I2C_Init(void);
 uint8_t I2C_Write_Bytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t *data, uint16_t len);
 uint8_t I2C_Read_Bytes(uint8_t dev_addr, uint8_t reg_addr, uint8_t *data, uint16_t len);
-uint8_t I2C_Wait_Ack(void);
+
 #endif
 

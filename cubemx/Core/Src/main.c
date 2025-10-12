@@ -89,7 +89,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   I2C_Init();  
-  //as5600Init();
+  as5600Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -99,9 +99,8 @@ int main(void)
     HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
     HAL_Delay(500);
     /* USER CODE END WHILE */
-      I2C_Wait_Ack();
     //I2C_Write_Bytes(0xAA,0xAA,NULL,0);
-    //rawAngle = as5600GetRawAngle();
+    rawAngle = as5600GetRawAngle();
     //HAL_GPIO_TogglePin(I2C_SDA_PORT, I2C_SDA_PIN);
     /* USER CODE BEGIN 3 */
   }

@@ -28,9 +28,11 @@ Section Cross References
     main.o(.text.main) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     main.o(.text.main) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_Init) for HAL_GPIO_Init
     main.o(.text.main) refers to soft_iic.o(.text.I2C_Init) for I2C_Init
+    main.o(.text.main) refers to as5600.o(.text.as5600Init) for as5600Init
+    main.o(.text.main) refers to main.o(.bss.rawAngle) for rawAngle
     main.o(.text.main) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_TogglePin) for HAL_GPIO_TogglePin
     main.o(.text.main) refers to stm32f1xx_hal.o(.text.HAL_Delay) for HAL_Delay
-    main.o(.text.main) refers to soft_iic.o(.text.I2C_Wait_Ack) for I2C_Wait_Ack
+    main.o(.text.main) refers to as5600.o(.text.as5600GetRawAngle) for as5600GetRawAngle
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     main.o(.text.SystemClock_Config) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
     main.o(.text.SystemClock_Config) refers to stm32f1xx_hal_rcc.o(.text.HAL_RCC_OscConfig) for HAL_RCC_OscConfig
@@ -256,11 +258,6 @@ Section Cross References
     soft_iic.o(.text.I2C_Init) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_Init) for HAL_GPIO_Init
     soft_iic.o(.text.I2C_Init) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     soft_iic.o(.ARM.exidx.text.I2C_Init) refers to soft_iic.o(.text.I2C_Init) for [Anonymous Symbol]
-    soft_iic.o(.text.I2C_Wait_Ack) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_Init) for HAL_GPIO_Init
-    soft_iic.o(.text.I2C_Wait_Ack) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
-    soft_iic.o(.text.I2C_Wait_Ack) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_ReadPin) for HAL_GPIO_ReadPin
-    soft_iic.o(.text.I2C_Wait_Ack) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_TogglePin) for HAL_GPIO_TogglePin
-    soft_iic.o(.ARM.exidx.text.I2C_Wait_Ack) refers to soft_iic.o(.text.I2C_Wait_Ack) for [Anonymous Symbol]
     soft_iic.o(.text.I2C_Write_Bytes) refers to soft_iic.o(.text.I2C_Start) for I2C_Start
     soft_iic.o(.text.I2C_Write_Bytes) refers to soft_iic.o(.text.I2C_Send_Byte) for I2C_Send_Byte
     soft_iic.o(.text.I2C_Write_Bytes) refers to soft_iic.o(.text.I2C_Wait_Ack) for I2C_Wait_Ack
@@ -270,6 +267,11 @@ Section Cross References
     soft_iic.o(.ARM.exidx.text.I2C_Start) refers to soft_iic.o(.text.I2C_Start) for [Anonymous Symbol]
     soft_iic.o(.text.I2C_Send_Byte) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     soft_iic.o(.ARM.exidx.text.I2C_Send_Byte) refers to soft_iic.o(.text.I2C_Send_Byte) for [Anonymous Symbol]
+    soft_iic.o(.text.I2C_Wait_Ack) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_Init) for HAL_GPIO_Init
+    soft_iic.o(.text.I2C_Wait_Ack) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
+    soft_iic.o(.text.I2C_Wait_Ack) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_ReadPin) for HAL_GPIO_ReadPin
+    soft_iic.o(.text.I2C_Wait_Ack) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_TogglePin) for HAL_GPIO_TogglePin
+    soft_iic.o(.ARM.exidx.text.I2C_Wait_Ack) refers to soft_iic.o(.text.I2C_Wait_Ack) for [Anonymous Symbol]
     soft_iic.o(.text.I2C_Stop) refers to stm32f1xx_hal_gpio.o(.text.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     soft_iic.o(.ARM.exidx.text.I2C_Stop) refers to soft_iic.o(.text.I2C_Stop) for [Anonymous Symbol]
     soft_iic.o(.text.I2C_Read_Bytes) refers to soft_iic.o(.text.I2C_Start) for I2C_Start
@@ -429,7 +431,6 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.SystemClock_Config), (8 bytes).
     Removing main.o(.text.Error_Handler), (10 bytes).
     Removing main.o(.ARM.exidx.text.Error_Handler), (8 bytes).
-    Removing main.o(.bss.rawAngle), (2 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
     Removing stm32f1xx_it.o(.text), (0 bytes).
     Removing stm32f1xx_it.o(.ARM.exidx.text.NMI_Handler), (8 bytes).
@@ -705,21 +706,14 @@ Removing Unused input sections from the image.
     Removing system_stm32f1xx.o(.rodata.APBPrescTable), (8 bytes).
     Removing soft_iic.o(.text), (0 bytes).
     Removing soft_iic.o(.ARM.exidx.text.I2C_Init), (8 bytes).
-    Removing soft_iic.o(.ARM.exidx.text.I2C_Wait_Ack), (8 bytes).
-    Removing soft_iic.o(.text.I2C_Write_Bytes), (80 bytes).
     Removing soft_iic.o(.ARM.exidx.text.I2C_Write_Bytes), (8 bytes).
-    Removing soft_iic.o(.text.I2C_Start), (98 bytes).
     Removing soft_iic.o(.ARM.exidx.text.I2C_Start), (8 bytes).
-    Removing soft_iic.o(.text.I2C_Send_Byte), (108 bytes).
     Removing soft_iic.o(.ARM.exidx.text.I2C_Send_Byte), (8 bytes).
-    Removing soft_iic.o(.text.I2C_Stop), (74 bytes).
+    Removing soft_iic.o(.ARM.exidx.text.I2C_Wait_Ack), (8 bytes).
     Removing soft_iic.o(.ARM.exidx.text.I2C_Stop), (8 bytes).
-    Removing soft_iic.o(.text.I2C_Read_Bytes), (98 bytes).
     Removing soft_iic.o(.ARM.exidx.text.I2C_Read_Bytes), (8 bytes).
-    Removing soft_iic.o(.text.I2C_Read_Byte), (278 bytes).
     Removing soft_iic.o(.ARM.exidx.text.I2C_Read_Byte), (8 bytes).
     Removing as5600.o(.text), (0 bytes).
-    Removing as5600.o(.text.as5600GetRawAngle), (46 bytes).
     Removing as5600.o(.ARM.exidx.text.as5600GetRawAngle), (8 bytes).
     Removing as5600.o(.text.as5600GetAngle), (46 bytes).
     Removing as5600.o(.ARM.exidx.text.as5600GetAngle), (8 bytes).
@@ -727,18 +721,15 @@ Removing Unused input sections from the image.
     Removing as5600.o(.ARM.exidx.text.as5600GetAngleRadians), (8 bytes).
     Removing as5600.o(.text.as5600GetAngleDegrees), (46 bytes).
     Removing as5600.o(.ARM.exidx.text.as5600GetAngleDegrees), (8 bytes).
-    Removing as5600.o(.text.as5600GetStatus), (60 bytes).
     Removing as5600.o(.ARM.exidx.text.as5600GetStatus), (8 bytes).
-    Removing as5600.o(.text.as5600CheckMagnetStatus), (46 bytes).
     Removing as5600.o(.ARM.exidx.text.as5600CheckMagnetStatus), (8 bytes).
     Removing as5600.o(.text.as5600SetConfig), (30 bytes).
     Removing as5600.o(.ARM.exidx.text.as5600SetConfig), (8 bytes).
-    Removing as5600.o(.text.as5600Init), (54 bytes).
     Removing as5600.o(.ARM.exidx.text.as5600Init), (8 bytes).
     Removing as5600.o(.text.as5600GetDeviceInfo), (48 bytes).
     Removing as5600.o(.ARM.exidx.text.as5600GetDeviceInfo), (8 bytes).
 
-313 unused section(s) (total 9976 bytes) removed from the image.
+302 unused section(s) (total 9032 bytes) removed from the image.
 
 ==============================================================================
 
@@ -904,16 +895,31 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08000b74   Section        0  stm32f1xx_hal_cortex.o(.text.HAL_SYSTICK_Config)
     [Anonymous Symbol]                       0x08000ba0   Section        0  stm32f1xx_it.o(.text.HardFault_Handler)
     [Anonymous Symbol]                       0x08000ba2   Section        0  soft_iic.o(.text.I2C_Init)
-    [Anonymous Symbol]                       0x08000c00   Section        0  soft_iic.o(.text.I2C_Wait_Ack)
-    [Anonymous Symbol]                       0x08000ca0   Section        0  stm32f1xx_it.o(.text.MemManage_Handler)
-    [Anonymous Symbol]                       0x08000ca4   Section        0  stm32f1xx_it.o(.text.NMI_Handler)
-    [Anonymous Symbol]                       0x08000ca6   Section        0  stm32f1xx_it.o(.text.PendSV_Handler)
-    [Anonymous Symbol]                       0x08000ca8   Section        0  stm32f1xx_it.o(.text.SVC_Handler)
-    [Anonymous Symbol]                       0x08000caa   Section        0  stm32f1xx_it.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x08000cb0   Section        0  main.o(.text.SystemClock_Config)
-    [Anonymous Symbol]                       0x08000d0a   Section        0  system_stm32f1xx.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x08000d0c   Section        0  stm32f1xx_it.o(.text.UsageFault_Handler)
-    [Anonymous Symbol]                       0x08000d10   Section        0  main.o(.text.main)
+    I2C_Read_Byte                            0x08000c01   Thumb Code   286  soft_iic.o(.text.I2C_Read_Byte)
+    [Anonymous Symbol]                       0x08000c00   Section        0  soft_iic.o(.text.I2C_Read_Byte)
+    [Anonymous Symbol]                       0x08000d20   Section        0  soft_iic.o(.text.I2C_Read_Bytes)
+    I2C_Send_Byte                            0x08000d85   Thumb Code   108  soft_iic.o(.text.I2C_Send_Byte)
+    [Anonymous Symbol]                       0x08000d84   Section        0  soft_iic.o(.text.I2C_Send_Byte)
+    I2C_Start                                0x08000df1   Thumb Code    98  soft_iic.o(.text.I2C_Start)
+    [Anonymous Symbol]                       0x08000df0   Section        0  soft_iic.o(.text.I2C_Start)
+    I2C_Stop                                 0x08000e55   Thumb Code    74  soft_iic.o(.text.I2C_Stop)
+    [Anonymous Symbol]                       0x08000e54   Section        0  soft_iic.o(.text.I2C_Stop)
+    I2C_Wait_Ack                             0x08000ea1   Thumb Code   158  soft_iic.o(.text.I2C_Wait_Ack)
+    [Anonymous Symbol]                       0x08000ea0   Section        0  soft_iic.o(.text.I2C_Wait_Ack)
+    [Anonymous Symbol]                       0x08000f40   Section        0  soft_iic.o(.text.I2C_Write_Bytes)
+    [Anonymous Symbol]                       0x08000f90   Section        0  stm32f1xx_it.o(.text.MemManage_Handler)
+    [Anonymous Symbol]                       0x08000f94   Section        0  stm32f1xx_it.o(.text.NMI_Handler)
+    [Anonymous Symbol]                       0x08000f96   Section        0  stm32f1xx_it.o(.text.PendSV_Handler)
+    [Anonymous Symbol]                       0x08000f98   Section        0  stm32f1xx_it.o(.text.SVC_Handler)
+    [Anonymous Symbol]                       0x08000f9a   Section        0  stm32f1xx_it.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x08000fa0   Section        0  main.o(.text.SystemClock_Config)
+    [Anonymous Symbol]                       0x08000ffa   Section        0  system_stm32f1xx.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x08000ffc   Section        0  stm32f1xx_it.o(.text.UsageFault_Handler)
+    [Anonymous Symbol]                       0x08000ffe   Section        0  as5600.o(.text.as5600CheckMagnetStatus)
+    [Anonymous Symbol]                       0x0800102c   Section        0  as5600.o(.text.as5600GetRawAngle)
+    [Anonymous Symbol]                       0x0800105a   Section        0  as5600.o(.text.as5600GetStatus)
+    [Anonymous Symbol]                       0x08001096   Section        0  as5600.o(.text.as5600Init)
+    [Anonymous Symbol]                       0x080010cc   Section        0  main.o(.text.main)
     .bss                                     0x20000010   Section       96  libspace.o(.bss)
     Heap_Mem                                 0x20000078   Data         512  startup_stm32f103xb.o(HEAP)
     HEAP                                     0x20000078   Section      512  startup_stm32f103xb.o(HEAP)
@@ -1090,25 +1096,31 @@ Image Symbol Table
     HAL_SYSTICK_Config                       0x08000b75   Thumb Code    44  stm32f1xx_hal_cortex.o(.text.HAL_SYSTICK_Config)
     HardFault_Handler                        0x08000ba1   Thumb Code     2  stm32f1xx_it.o(.text.HardFault_Handler)
     I2C_Init                                 0x08000ba3   Thumb Code    92  soft_iic.o(.text.I2C_Init)
-    I2C_Wait_Ack                             0x08000c01   Thumb Code   158  soft_iic.o(.text.I2C_Wait_Ack)
-    MemManage_Handler                        0x08000ca1   Thumb Code     2  stm32f1xx_it.o(.text.MemManage_Handler)
-    NMI_Handler                              0x08000ca5   Thumb Code     2  stm32f1xx_it.o(.text.NMI_Handler)
-    PendSV_Handler                           0x08000ca7   Thumb Code     2  stm32f1xx_it.o(.text.PendSV_Handler)
-    SVC_Handler                              0x08000ca9   Thumb Code     2  stm32f1xx_it.o(.text.SVC_Handler)
-    SysTick_Handler                          0x08000cab   Thumb Code     4  stm32f1xx_it.o(.text.SysTick_Handler)
-    SystemClock_Config                       0x08000cb1   Thumb Code    90  main.o(.text.SystemClock_Config)
-    SystemInit                               0x08000d0b   Thumb Code     2  system_stm32f1xx.o(.text.SystemInit)
-    UsageFault_Handler                       0x08000d0d   Thumb Code     2  stm32f1xx_it.o(.text.UsageFault_Handler)
-    main                                     0x08000d11   Thumb Code   136  main.o(.text.main)
-    AHBPrescTable                            0x08000d98   Data          16  system_stm32f1xx.o(.rodata.AHBPrescTable)
-    Region$$Table$$Base                      0x08000da8   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08000dc8   Number         0  anon$$obj.o(Region$$Table)
+    I2C_Read_Bytes                           0x08000d21   Thumb Code    98  soft_iic.o(.text.I2C_Read_Bytes)
+    I2C_Write_Bytes                          0x08000f41   Thumb Code    80  soft_iic.o(.text.I2C_Write_Bytes)
+    MemManage_Handler                        0x08000f91   Thumb Code     2  stm32f1xx_it.o(.text.MemManage_Handler)
+    NMI_Handler                              0x08000f95   Thumb Code     2  stm32f1xx_it.o(.text.NMI_Handler)
+    PendSV_Handler                           0x08000f97   Thumb Code     2  stm32f1xx_it.o(.text.PendSV_Handler)
+    SVC_Handler                              0x08000f99   Thumb Code     2  stm32f1xx_it.o(.text.SVC_Handler)
+    SysTick_Handler                          0x08000f9b   Thumb Code     4  stm32f1xx_it.o(.text.SysTick_Handler)
+    SystemClock_Config                       0x08000fa1   Thumb Code    90  main.o(.text.SystemClock_Config)
+    SystemInit                               0x08000ffb   Thumb Code     2  system_stm32f1xx.o(.text.SystemInit)
+    UsageFault_Handler                       0x08000ffd   Thumb Code     2  stm32f1xx_it.o(.text.UsageFault_Handler)
+    as5600CheckMagnetStatus                  0x08000fff   Thumb Code    46  as5600.o(.text.as5600CheckMagnetStatus)
+    as5600GetRawAngle                        0x0800102d   Thumb Code    46  as5600.o(.text.as5600GetRawAngle)
+    as5600GetStatus                          0x0800105b   Thumb Code    60  as5600.o(.text.as5600GetStatus)
+    as5600Init                               0x08001097   Thumb Code    54  as5600.o(.text.as5600Init)
+    main                                     0x080010cd   Thumb Code   150  main.o(.text.main)
+    AHBPrescTable                            0x08001162   Data          16  system_stm32f1xx.o(.rodata.AHBPrescTable)
+    Region$$Table$$Base                      0x08001174   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001194   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f1xx.o(.data.SystemCoreClock)
     uwTickFreq                               0x20000004   Data           1  stm32f1xx_hal.o(.data.uwTickFreq)
     uwTickPrio                               0x20000008   Data           4  stm32f1xx_hal.o(.data.uwTickPrio)
     __libspace_start                         0x20000010   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000070   Data           0  libspace.o(.bss)
-    uwTick                                   0x20000070   Data           4  stm32f1xx_hal.o(.bss.uwTick)
+    rawAngle                                 0x20000070   Data           2  main.o(.bss.rawAngle)
+    uwTick                                   0x20000074   Data           4  stm32f1xx_hal.o(.bss.uwTick)
 
 
 
@@ -1118,9 +1130,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00000dd8, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000011a8, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000dc8, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001194, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1206,36 +1218,51 @@ Memory Map of the image
     0x08000ba0   0x08000ba0   0x00000002   Code   RO           29    .text.HardFault_Handler  stm32f1xx_it.o
     0x08000ba2   0x08000ba2   0x0000005c   Code   RO          426    .text.I2C_Init      soft_iic.o
     0x08000bfe   0x08000bfe   0x00000002   PAD
-    0x08000c00   0x08000c00   0x0000009e   Code   RO          428    .text.I2C_Wait_Ack  soft_iic.o
-    0x08000c9e   0x08000c9e   0x00000002   PAD
-    0x08000ca0   0x08000ca0   0x00000002   Code   RO           31    .text.MemManage_Handler  stm32f1xx_it.o
-    0x08000ca2   0x08000ca2   0x00000002   PAD
-    0x08000ca4   0x08000ca4   0x00000002   Code   RO           27    .text.NMI_Handler   stm32f1xx_it.o
-    0x08000ca6   0x08000ca6   0x00000002   Code   RO           41    .text.PendSV_Handler  stm32f1xx_it.o
-    0x08000ca8   0x08000ca8   0x00000002   Code   RO           37    .text.SVC_Handler   stm32f1xx_it.o
-    0x08000caa   0x08000caa   0x00000004   Code   RO           43    .text.SysTick_Handler  stm32f1xx_it.o
-    0x08000cae   0x08000cae   0x00000002   PAD
-    0x08000cb0   0x08000cb0   0x0000005a   Code   RO           13    .text.SystemClock_Config  main.o
-    0x08000d0a   0x08000d0a   0x00000002   Code   RO          411    .text.SystemInit    system_stm32f1xx.o
-    0x08000d0c   0x08000d0c   0x00000002   Code   RO           35    .text.UsageFault_Handler  stm32f1xx_it.o
-    0x08000d0e   0x08000d0e   0x00000002   PAD
-    0x08000d10   0x08000d10   0x00000088   Code   RO           11    .text.main          main.o
-    0x08000d98   0x08000d98   0x00000010   Data   RO          416    .rodata.AHBPrescTable  system_stm32f1xx.o
-    0x08000da8   0x08000da8   0x00000020   Data   RO          658    Region$$Table       anon$$obj.o
+    0x08000c00   0x08000c00   0x0000011e   Code   RO          440    .text.I2C_Read_Byte  soft_iic.o
+    0x08000d1e   0x08000d1e   0x00000002   PAD
+    0x08000d20   0x08000d20   0x00000062   Code   RO          438    .text.I2C_Read_Bytes  soft_iic.o
+    0x08000d82   0x08000d82   0x00000002   PAD
+    0x08000d84   0x08000d84   0x0000006c   Code   RO          432    .text.I2C_Send_Byte  soft_iic.o
+    0x08000df0   0x08000df0   0x00000062   Code   RO          430    .text.I2C_Start     soft_iic.o
+    0x08000e52   0x08000e52   0x00000002   PAD
+    0x08000e54   0x08000e54   0x0000004a   Code   RO          436    .text.I2C_Stop      soft_iic.o
+    0x08000e9e   0x08000e9e   0x00000002   PAD
+    0x08000ea0   0x08000ea0   0x0000009e   Code   RO          434    .text.I2C_Wait_Ack  soft_iic.o
+    0x08000f3e   0x08000f3e   0x00000002   PAD
+    0x08000f40   0x08000f40   0x00000050   Code   RO          428    .text.I2C_Write_Bytes  soft_iic.o
+    0x08000f90   0x08000f90   0x00000002   Code   RO           31    .text.MemManage_Handler  stm32f1xx_it.o
+    0x08000f92   0x08000f92   0x00000002   PAD
+    0x08000f94   0x08000f94   0x00000002   Code   RO           27    .text.NMI_Handler   stm32f1xx_it.o
+    0x08000f96   0x08000f96   0x00000002   Code   RO           41    .text.PendSV_Handler  stm32f1xx_it.o
+    0x08000f98   0x08000f98   0x00000002   Code   RO           37    .text.SVC_Handler   stm32f1xx_it.o
+    0x08000f9a   0x08000f9a   0x00000004   Code   RO           43    .text.SysTick_Handler  stm32f1xx_it.o
+    0x08000f9e   0x08000f9e   0x00000002   PAD
+    0x08000fa0   0x08000fa0   0x0000005a   Code   RO           13    .text.SystemClock_Config  main.o
+    0x08000ffa   0x08000ffa   0x00000002   Code   RO          411    .text.SystemInit    system_stm32f1xx.o
+    0x08000ffc   0x08000ffc   0x00000002   Code   RO           35    .text.UsageFault_Handler  stm32f1xx_it.o
+    0x08000ffe   0x08000ffe   0x0000002e   Code   RO          460    .text.as5600CheckMagnetStatus  as5600.o
+    0x0800102c   0x0800102c   0x0000002e   Code   RO          450    .text.as5600GetRawAngle  as5600.o
+    0x0800105a   0x0800105a   0x0000003c   Code   RO          458    .text.as5600GetStatus  as5600.o
+    0x08001096   0x08001096   0x00000036   Code   RO          464    .text.as5600Init    as5600.o
+    0x080010cc   0x080010cc   0x00000096   Code   RO           11    .text.main          main.o
+    0x08001162   0x08001162   0x00000010   Data   RO          416    .rodata.AHBPrescTable  system_stm32f1xx.o
+    0x08001172   0x08001172   0x00000002   PAD
+    0x08001174   0x08001174   0x00000020   Data   RO          658    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08000dc8, Size: 0x00000678, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001198, Size: 0x00000678, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08000dc8   0x00000004   Data   RW          415    .data.SystemCoreClock  system_stm32f1xx.o
-    0x20000004   0x08000dcc   0x00000001   Data   RW          126    .data.uwTickFreq    stm32f1xx_hal.o
-    0x20000005   0x08000dcd   0x00000003   PAD
-    0x20000008   0x08000dd0   0x00000004   Data   RW          125    .data.uwTickPrio    stm32f1xx_hal.o
-    0x2000000c   0x08000dd4   0x00000004   PAD
+    0x20000000   0x08001198   0x00000004   Data   RW          415    .data.SystemCoreClock  system_stm32f1xx.o
+    0x20000004   0x0800119c   0x00000001   Data   RW          126    .data.uwTickFreq    stm32f1xx_hal.o
+    0x20000005   0x0800119d   0x00000003   PAD
+    0x20000008   0x080011a0   0x00000004   Data   RW          125    .data.uwTickPrio    stm32f1xx_hal.o
+    0x2000000c   0x080011a4   0x00000004   PAD
     0x20000010        -       0x00000060   Zero   RW          523    .bss                c_w.l(libspace.o)
-    0x20000070        -       0x00000004   Zero   RW          127    .bss.uwTick         stm32f1xx_hal.o
-    0x20000074   0x08000dd4   0x00000004   PAD
+    0x20000070        -       0x00000002   Zero   RW           17    .bss.rawAngle       main.o
+    0x20000072   0x080011a4   0x00000002   PAD
+    0x20000074        -       0x00000004   Zero   RW          127    .bss.uwTick         stm32f1xx_hal.o
     0x20000078        -       0x00000200   Zero   RW            2    HEAP                startup_stm32f103xb.o
     0x20000278        -       0x00000400   Zero   RW            1    STACK               startup_stm32f103xb.o
 
@@ -1247,8 +1274,9 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       226          0          0          0          0       3181   main.o
-       250          0          0          0          0       5182   soft_iic.o
+       206          0          0          0          0       2974   as5600.o
+       240          0          0          0          2       3189   main.o
+       994          0          0          0          0       5226   soft_iic.o
         64         26        236          0       1536        788   startup_stm32f103xb.o
        196          0          0          5          4       5749   stm32f1xx_hal.o
        162          0          0          0          0       8282   stm32f1xx_hal_cortex.o
@@ -1259,9 +1287,9 @@ Image component sizes
          2          0         16          4          0       1570   system_stm32f1xx.o
 
     ----------------------------------------------------------------------
-      2844         50        284         12       1548      39183   Object Totals
+      3814         50        286         12       1548      42209   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        10          0          0          3          8          0   (incl. Padding)
+        16          0          2          3          6          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1309,15 +1337,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3244         66        284         12       1644      39595   Grand Totals
-      3244         66        284         12       1644      39595   ELF Image Totals
-      3244         66        284         12          0          0   ROM Totals
+      4214         66        286         12       1644      42601   Grand Totals
+      4214         66        286         12       1644      42601   ELF Image Totals
+      4214         66        286         12          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 3528 (   3.45kB)
+    Total RO  Size (Code + RO Data)                 4500 (   4.39kB)
     Total RW  Size (RW Data + ZI Data)              1656 (   1.62kB)
-    Total ROM Size (Code + RO Data + RW Data)       3540 (   3.46kB)
+    Total ROM Size (Code + RO Data + RW Data)       4512 (   4.41kB)
 
 ==============================================================================
 
