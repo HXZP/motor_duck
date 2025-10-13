@@ -12,6 +12,7 @@ extern TIM_HandleTypeDef htim2;
 
 static void TIM1_Init(uint32_t frequency_Hz);
 static void TIM2_Init(uint32_t frequency_Hz, uint32_t period);
+static void GPIO_Init(void);
 
 void foc_output(uint16_t a, uint16_t b, uint16_t c)
 {
@@ -41,6 +42,8 @@ void foc_root_init(void)
     foc_init(&foc,&cfg);
     TIM1_Init(cfg.pwm_hz);
     TIM2_Init(cfg.pwm_hz, cfg.pwm_period);
+    GPIO_Init();
+    
     foc_zero_reset(&foc);
 }
 
@@ -64,6 +67,27 @@ void TIM1_UP_IRQHandler(void)
 void TIM2_IRQHandler(void)
 {
     HAL_TIM_IRQHandler(&htim2);
+}
+
+//GPIO_PIN_14 Logic high enables OUT. Internalpulldown
+//GPIO_PIN_3 Active-low reset input initializesinternal logicanddisablesthe
+static void GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_RESET);
+  
+  /*Configure GPIO pin : LED_Pin */
+  GPIO_InitStruct.Pin = GPIO_PIN_14 | GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 }
 
 
