@@ -49,7 +49,7 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>motor\</OutputDirectory>
+          <OutputDirectory>.\motor\</OutputDirectory>
           <OutputName>motor</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
@@ -494,6 +494,46 @@
               <FileName>as5600.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\user\drivers\as5600.c</FilePath>
+            </File>
+            <File>
+              <FileName>log.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\log.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>User/drivers/rtt</GroupName>
+          <Files>
+            <File>
+              <FileName>SEGGER_RTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\rtt\SEGGER_RTT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT_printf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\rtt\SEGGER_RTT_printf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>User/drivers/foc</GroupName>
+          <Files>
+            <File>
+              <FileName>foc_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\foc_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>foc_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\foc\foc_core.c</FilePath>
+            </File>
+            <File>
+              <FileName>foc_math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\foc\foc_math.c</FilePath>
             </File>
           </Files>
         </Group>

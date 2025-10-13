@@ -21,8 +21,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "log.h"
 #include "soft_iic.h"
 #include "as5600.h"
+#include "foc_init.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -88,8 +90,10 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  log_init();
   I2C_Init();  
   as5600Init();
+  foc_root_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -97,11 +101,11 @@ int main(void)
   while (1)
   {
     HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
-    HAL_Delay(500);
+    HAL_Delay(1);
     /* USER CODE END WHILE */
-    //I2C_Write_Bytes(0xAA,0xAA,NULL,0);
-    rawAngle = as5600GetRawAngle();
-    //HAL_GPIO_TogglePin(I2C_SDA_PORT, I2C_SDA_PIN);
+    rawAngle = foc_get_angle();  
+    printf("%d\r\n",rawAngle);  
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
