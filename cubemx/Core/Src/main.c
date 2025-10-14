@@ -104,8 +104,8 @@ int main(void)
   while (1)
   {
     HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
-    HAL_Delay(1);
-    rawAngle = foc_get_angle();  
+    HAL_Delay(500);
+//    rawAngle = foc_get_angle();  
     printf("%d\r\n",rawAngle);  
     /* USER CODE END WHILE */
 
@@ -167,6 +167,7 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+      printf("Error Handler");
   }
   /* USER CODE END Error_Handler_Debug */
 }
