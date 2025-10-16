@@ -78,6 +78,7 @@ static void I2C_NAck(void)
 }
 
 // 等待应答
+uint16_t iic_time_out_cnt = 0;
 static uint8_t I2C_Wait_Ack(void)
 {
     uint8_t ack;
@@ -93,13 +94,26 @@ static uint8_t I2C_Wait_Ack(void)
     I2C_Delay();
     
     HAL_GPIO_WritePin(I2C_SCL_PORT, I2C_SCL_PIN, GPIO_PIN_SET);
-    I2C_Delay();
+//    I2C_Delay();
     
+    uint16_t wait_cnt = 1000;
     // 读取应答信号
-    if(HAL_GPIO_ReadPin(I2C_SDA_PORT, I2C_SDA_PIN) == GPIO_PIN_RESET)
-        ack = 0;  // 收到应答
-    else
-        ack = 1;  // 未收到应答
+    while(wait_cnt)
+    {
+        if(HAL_GPIO_ReadPin(I2C_SDA_PORT, I2C_SDA_PIN) == GPIO_PIN_RESET)
+        {
+            ack = 0;  // 收到应答     
+            break;
+        }
+        
+        wait_cnt--;
+        if(!wait_cnt)
+        {
+            ack = 1;  // 未收到应答    
+            iic_time_out_cnt++;    
+        }
+        
+    }
     
     HAL_GPIO_WritePin(I2C_SCL_PORT, I2C_SCL_PIN, GPIO_PIN_RESET);
     I2C_Delay();

@@ -103,9 +103,18 @@ uint16_t as5600GetAngle(void)
  * @brief 获取AS5600角度(弧度)
  * @return 角度值(0-2π弧度)
  */
+uint16_t angle_sensor_same = 0;
+uint16_t angle_get_cnt = 0;
+static uint16_t last_angle = 0;
 float as5600GetAngleRadians(void)
 {
     uint16_t rawAngle = as5600GetRawAngle();
+    angle_get_cnt++;
+    
+    if(last_angle == rawAngle)
+        angle_sensor_same++;
+    last_angle = rawAngle;
+    
     if (rawAngle == 0xFFFF) return -1.0f; // 读取失败
     return rawAngle * ANGLE_TO_RADIANS;
 }

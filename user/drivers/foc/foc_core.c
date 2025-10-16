@@ -7,11 +7,11 @@
 /*
     **  @brief  N值到扇区
 */
-uint8_t N2sector[6] = {2,6,1,4,3,5};
+const uint8_t N2sector[6] = {2,6,1,4,3,5};
 /*
     **  @brief  扇区到两个子向量 顺序为扇区的逆时针方向
 */
-uint8_t sector2vector[6][2] = {
+const uint8_t sector2vector[6][2] = {
     {4, 6},
     {6, 2},
     {2, 3},
@@ -23,7 +23,7 @@ uint8_t sector2vector[6][2] = {
     **  @brief  从扇区到两个基向量的加权 顺序为扇区的逆时针方向
 */
 //常见xy的向量方向：由小序号指向大序号
-//int8_t sector2vector_mask[6][2][3] = {
+//const int8_t sector2vector_mask[6][2][3] = {
 //    {{0,0,-1},{1,0,0}},
 //    {{0,0,1},{0,1,0}},
 //    {{1,0,0},{0,-1,0}},
@@ -32,7 +32,7 @@ uint8_t sector2vector[6][2] = {
 //    {{0,1,0},{-1,0,0}}
 //};
 //我的向量方向，按逆时针指向
-int8_t sector2vector_mask[6][2][3] = {
+const int8_t sector2vector_mask[6][2][3] = {
     {{0,0,-1},{1,0,0}},
     {{0,1,0},{0,0,1}},
     {{1,0,0},{0,-1,0}},
@@ -210,7 +210,7 @@ void foc_init(foc_t *foc, const foc_cfg_t *cfg)
 
 /*angle:0~1*/
 float foc_sensor_updata(foc_t *foc)
-{
+{  
     float angle = foc->cfg->get_angle_rad();
     
     foc->angle.sensor_angle = angle;
@@ -256,6 +256,8 @@ void foc_control(foc_t *foc)
     foc_get_vector_normalize(&foc->output_vector, &foc->vector_percent, &foc->sector);
 //    foc_get_vector_strength(&foc->output_vector, foc->info.vector_voltage);
     foc_get_pwm_duty(&foc->pwm_duty, &foc->output_vector);
+    
+    foc->cfg->output(foc->pwm_duty.a,foc->pwm_duty.b,foc->pwm_duty.c);
 }
 
 void foc_zero_reset(foc_t *foc)
@@ -263,7 +265,7 @@ void foc_zero_reset(foc_t *foc)
     if(foc->state == Foc_Zero_Angle_Init)
     {
         foc->cfg->output(foc->cfg->pwm_period*90/100,0,0);
-        foc->cfg->delay(1000);
+        foc->cfg->delay(300);
         foc->angle.sensor_angle = foc->cfg->get_angle_rad();
         foc->angle.zero_angle = foc->angle.sensor_angle;
         foc->cfg->output(0,0,0);

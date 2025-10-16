@@ -97,6 +97,8 @@ int main(void)
   I2C_Init();  
   as5600Init();
   foc_root_init();
+  
+  foc_set_target(0,20,0);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -104,9 +106,9 @@ int main(void)
   while (1)
   {
     HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
-    HAL_Delay(500);
-//    rawAngle = foc_get_angle();  
-    printf("%d\r\n",rawAngle);  
+    HAL_Delay(1);
+    rawAngle = foc_get_angle();  
+//    printf("%d\r\n",rawAngle);  
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
