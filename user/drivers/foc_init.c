@@ -15,6 +15,10 @@ static void GPIO_Init(void);
 
 void foc_output(uint16_t a, uint16_t b, uint16_t c)
 {
+//    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0);
+//    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+//    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
+    
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, a);
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, b);
     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, c);
@@ -39,7 +43,7 @@ foc_cfg_t cfg = {
 void foc_root_init(void)
 {
     foc_init(&foc,&cfg);
-    
+
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -93,10 +97,15 @@ void TIM1_UP_IRQHandler(void)
     HAL_TIM_IRQHandler(&htim1);
 }
 
+//401us
 void TIM2_IRQHandler(void)
 {
+//    HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8);
+    
     foc_control(&foc);        
     HAL_TIM_IRQHandler(&htim2);
+    
+//    HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8);
 }
 
 //GPIO_PIN_14 Logic high enables OUT. Internalpulldown
@@ -119,8 +128,6 @@ static void GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 }
-
-
 
 
 

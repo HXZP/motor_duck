@@ -11,7 +11,7 @@
                 <Options TimeResolutionUs="1000000" />
             </Scope>
             <Trigger>
-                <Options Level="0" Symbol="rawAngle" On="0" Auto="0" Rise="0" Fall="0" />
+                <Options Level="0" Symbol="us_diff" On="0" Auto="0" Rise="0" Fall="1" />
             </Trigger>
         </Configuration>
         <Windows>
@@ -20,7 +20,7 @@
         </Windows>
         <SelectedSymbols>
             <Symbol>
-                <Options Name="rawAngle" Address="0x20000794" Type="unsigned short" TypeID="7" Size="2" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="1.79769e+308" YMaxSampled="-1.79769e+308" YAvgSampled="0" Offset="0" ShowInGraph="1" YOffset="0" IsAutoConfig="0" YResolution="1" MaxValue="65535" File="F:\Aproject\Duck_proj\motor\cubemx\MDK-ARM/../Core/Src\main.c" DrawStyle="0" NameWithParents="rawAngle" />
+                <Options Name="us_diff" Address="0x200000B0" Type="unsigned int" TypeID="8" Size="4" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="0" YMaxSampled="0" YAvgSampled="0" Offset="4" ShowInGraph="1" YOffset="0" IsAutoConfig="0" YResolution="1" MaxValue="-2147483648" File="F:\Aproject\Duck_proj\motor\cubemx\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="us_diff" />
             </Symbol>
         </SelectedSymbols>
     </Project>

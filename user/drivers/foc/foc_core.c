@@ -239,6 +239,7 @@ void foc_target_updata(foc_t *foc, foc_park_t target)
 
 }
 
+
 void foc_control(foc_t *foc)
 {
     if(foc->state != Foc_Working)
