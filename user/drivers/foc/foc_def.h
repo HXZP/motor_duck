@@ -39,6 +39,16 @@ typedef struct{
 
 typedef struct{
 
+    uint16_t ch1;
+    uint16_t ch2;
+    uint32_t ch1_sum;
+    uint32_t ch2_sum;
+    uint8_t cnt;
+    uint8_t init_flag;
+}foc_current_adc_offset_t;
+
+typedef struct{
+
     float d;
     float q;
     float theta;
@@ -147,20 +157,22 @@ typedef struct{
     foc_state_e state;
     foc_mechine_info_t info;
 
-    foc_phase_volage_t phase_volage;
+    foc_phase_volage_t  phase_volage;
     foc_phase_current_t phase_current;
 	
-    foc_park_t         park;    
-    foc_clarke_t       clarke;
-    foc_sector_t       sector;
-    foc_output_vector_t output_vector;
+    foc_park_t           park;    
+    foc_clarke_t         clarke;
+    foc_sector_t         sector;
+    foc_output_vector_t  output_vector;
     foc_vector_percent_t vector_percent;
-    foc_pwm_duty_t      pwm_duty;
+    foc_pwm_duty_t       pwm_duty;
 
     foc_angle_t  angle;
 
     foc_park_t         target_park;
 
+    foc_current_adc_offset_t adc_offset;
+    
 	const foc_cfg_t *cfg;
 }foc_t;
 

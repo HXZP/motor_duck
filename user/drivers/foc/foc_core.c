@@ -3,7 +3,7 @@
 
 */
 #include "foc/foc_core.h"
-
+#include <stdlib.h>
 /*
     **  @brief  N值到扇区
 */
@@ -273,3 +273,34 @@ void foc_zero_reset(foc_t *foc)
         foc->state = Foc_Working;
     }
 }
+
+void foc_adc_offset_get(foc_t *foc, uint16_t* ch1, uint16_t*ch2)
+{
+    uint16_t *adc_data_ch1 = malloc(sizeof(uint16_t)*250);
+    uint16_t *adc_data_ch2 = malloc(sizeof(uint16_t)*250);
+
+    for(foc->adc_offset.cnt = 0; foc->adc_offset.cnt < 250; foc->adc_offset.cnt++)
+    {
+        adc_data_ch1[foc->adc_offset.cnt] = *ch1;
+        adc_data_ch2[foc->adc_offset.cnt] = *ch2;
+        foc->cfg->delay(1);
+    }
+
+    for(foc->adc_offset.cnt = 0; foc->adc_offset.cnt < 250; foc->adc_offset.cnt++)
+    {
+        foc->adc_offset.ch1_sum += adc_data_ch1[foc->adc_offset.cnt];
+        foc->adc_offset.ch2_sum += adc_data_ch2[foc->adc_offset.cnt];
+    }
+
+    foc->adc_offset.ch1 = foc->adc_offset.ch1_sum / 250;
+    foc->adc_offset.ch2 = foc->adc_offset.ch2_sum / 250;
+
+    free(adc_data_ch1);
+    free(adc_data_ch2);
+
+    foc->adc_offset.init_flag = 1;
+}
+    
+    
+
+

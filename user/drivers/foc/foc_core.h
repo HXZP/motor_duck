@@ -11,7 +11,7 @@ void foc_target_updata(foc_t *foc, foc_park_t target);
 float foc_sensor_updata(foc_t *foc);
 void foc_control(foc_t *foc);
 void foc_zero_reset(foc_t *foc);
-
+void foc_adc_offset_get(foc_t *foc, uint16_t* ch1, uint16_t*ch2);
 
 
 
