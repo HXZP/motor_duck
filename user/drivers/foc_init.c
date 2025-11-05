@@ -65,13 +65,9 @@ void foc_root_init(void)
     foc_adc_offset_get(&foc, &injected_data[0], &injected_data[1]);    
     
     foc_output_enable(1);
-//    foc_zero_reset(&foc);
+    foc_zero_reset(&foc);
 
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 1000);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
-    
-//    HAL_TIM_Base_Start_IT(&htim2);    
+    HAL_TIM_Base_Start_IT(&htim2);    
 }
 
 float foc_get_angle(void)
