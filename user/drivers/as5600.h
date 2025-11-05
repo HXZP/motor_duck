@@ -15,7 +15,7 @@ uint8_t as5600Init(void);
 uint8_t as5600GetDeviceInfo(uint8_t *chipVersion);
 uint16_t as5600GetRawAngle(void);
 uint16_t as5600GetAngle(void);
-float as5600GetAngleRadians(void);
+int32_t as5600GetAngleRadians(void);
 float as5600GetAngleDegrees(void);
 uint8_t as5600GetStatus(as5600Status_t *status);
 uint8_t as5600CheckMagnetStatus(void);

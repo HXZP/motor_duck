@@ -35,7 +35,7 @@ foc_t foc;
 foc_cfg_t cfg = {
 
 	.pole_pairs = 7,
-	.master_voltage = 12,
+	.master_voltage = 12000,
 	.pwm_period = 1600,
 	
 	.pwm_hz = 10000,
@@ -65,28 +65,24 @@ void foc_root_init(void)
     foc_adc_offset_get(&foc, &injected_data[0], &injected_data[1]);    
     
     foc_output_enable(1);
-//    foc_zero_reset(&foc);
+    foc_zero_reset(&foc);
 
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 1000);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
-    
-//    HAL_TIM_Base_Start_IT(&htim2);    
+    HAL_TIM_Base_Start_IT(&htim2);    
 }
 
-float foc_get_angle(void)
+int32_t foc_get_angle(void)
 {
     return foc_sensor_updata(&foc);
 }
 
-void foc_set_target(uint8_t _d, uint8_t _q, float _theta)
+void foc_set_target(int32_t _d, int32_t _q, int32_t _theta)
 {
-    if(_d > 100)_d = 100;
-    if(_q > 100)_q = 100;
+    if(_d > OUT_MAX)_d = OUT_MAX;
+    if(_q > OUT_MAX)_q = OUT_MAX;
     
     foc_park_t target = {
-        .d = foc.info.vector_voltage*_d/100,
-        .q = foc.info.vector_voltage*_q/100,
+        .d = _d,
+        .q = _q,
         .theta = _theta,
     };
     foc_target_updata(&foc, target);

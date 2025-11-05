@@ -107,17 +107,12 @@ uint16_t as5600GetAngle(void)
 //uint16_t angle_get_cnt = 0;
 //static uint16_t last_angle = 0;
 uint16_t rawAngle4095;
-float as5600GetAngleRadians(void)
+int32_t as5600GetAngleRadians(void)
 {
     rawAngle4095 = as5600GetRawAngle();
-//    angle_get_cnt++;
-//    
-//    if(last_angle == rawAngle)
-//        angle_sensor_same++;
-//    last_angle = rawAngle;
     
-    if (rawAngle4095 == 0xFFFF) return -1.0f; // 读取失败
-    return rawAngle4095 * ANGLE_TO_RADIANS;
+    if (rawAngle4095 == 0xFFFF) return 0xFFFFFFFF; // 读取失败
+    return rawAngle4095 * 15343/10000;
 }
 
 /**

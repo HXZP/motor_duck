@@ -4,9 +4,9 @@
 #include <stdint.h>
 
 void foc_root_init(void);
-float foc_get_angle(void);
+int32_t foc_get_angle(void);
 void foc_output_enable(uint8_t enable);
-void foc_set_target(uint8_t _d, uint8_t _q, float _theta);
+void foc_set_target(int32_t _d, int32_t _q, int32_t _theta);
 
 
 

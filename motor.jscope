@@ -11,7 +11,7 @@
                 <Options TimeResolutionUs="1000000" />
             </Scope>
             <Trigger>
-                <Options Level="0" Symbol="injected_data[0]" On="0" Auto="0" Rise="0" Fall="0" />
+                <Options Level="0" Symbol="alpha" On="0" Auto="0" Rise="0" Fall="0" />
             </Trigger>
         </Configuration>
         <Windows>
@@ -20,25 +20,25 @@
         </Windows>
         <SelectedSymbols>
             <Symbol>
-                <Options Name="injected_data[0]" Address="0x200000A2" Type="unsigned short" TypeID="7" Size="2" GraphColorRed="0" GraphColorGreen="0" GraphColorBlue="255" YMinSampled="1658" YMaxSampled="2342" YAvgSampled="2186.21" Offset="4" ShowInGraph="0" YOffset="0" IsAutoConfig="0" YResolution="1000" MaxValue="65535" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="injected_data[0]" />
+                <Options Name="alpha" Address="0x20000588" Type="int" TypeID="12" Size="4" GraphColorRed="0" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="-512" YMaxSampled="511" YAvgSampled="-4.20599" Offset="4" ShowInGraph="1" YOffset="0" IsAutoConfig="0" YResolution="500" MaxValue="2147483647" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.clarke.alpha" />
             </Symbol>
             <Symbol>
-                <Options Name="injected_data[1]" Address="0x200000A4" Type="unsigned short" TypeID="7" Size="2" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="1724" YMaxSampled="2420" YAvgSampled="2260.91" Offset="6" ShowInGraph="0" YOffset="0" IsAutoConfig="0" YResolution="1000" MaxValue="65535" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="injected_data[1]" />
+                <Options Name="beta" Address="0x2000058C" Type="int" TypeID="12" Size="4" GraphColorRed="0" GraphColorGreen="0" GraphColorBlue="255" YMinSampled="-512" YMaxSampled="512" YAvgSampled="90.0069" Offset="8" ShowInGraph="1" YOffset="0" IsAutoConfig="0" YResolution="500" MaxValue="2147483647" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.clarke.beta" />
             </Symbol>
             <Symbol>
-                <Options Name="current_data[0]" Address="0x200000A6" Type="short" TypeID="11" Size="2" GraphColorRed="0" GraphColorGreen="255" GraphColorBlue="255" YMinSampled="-936" YMaxSampled="169" YAvgSampled="-684.59" Offset="8" ShowInGraph="1" YOffset="0" IsAutoConfig="0" YResolution="500" MaxValue="32767" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="current_data[0]" />
+                <Options Name="a" Address="0x200005D6" Type="unsigned short" TypeID="7" Size="2" GraphColorRed="0" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="0" YMaxSampled="890" YAvgSampled="797.74" Offset="12" ShowInGraph="0" YOffset="0" IsAutoConfig="0" YResolution="200" MaxValue="65535" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.pwm_duty.a" />
             </Symbol>
             <Symbol>
-                <Options Name="current_data[1]" Address="0x200000A8" Type="short" TypeID="11" Size="2" GraphColorRed="0" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="-1066" YMaxSampled="51" YAvgSampled="-807.984" Offset="10" ShowInGraph="1" YOffset="0" IsAutoConfig="0" YResolution="500" MaxValue="32767" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="current_data[1]" />
+                <Options Name="b" Address="0x200005D8" Type="unsigned short" TypeID="7" Size="2" GraphColorRed="0" GraphColorGreen="0" GraphColorBlue="255" YMinSampled="0" YMaxSampled="890" YAvgSampled="807.248" Offset="14" ShowInGraph="0" YOffset="0" IsAutoConfig="0" YResolution="200" MaxValue="65535" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.pwm_duty.b" />
             </Symbol>
             <Symbol>
-                <Options Name="current_data[2]" Address="0x200000AA" Type="short" TypeID="11" Size="2" GraphColorRed="255" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="-207" YMaxSampled="1993" YAvgSampled="1492.51" Offset="12" ShowInGraph="0" YOffset="0" IsAutoConfig="0" YResolution="500" MaxValue="32767" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="current_data[2]" />
+                <Options Name="c" Address="0x200005DA" Type="unsigned short" TypeID="7" Size="2" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="0" YMaxSampled="890" YAvgSampled="790.142" Offset="16" ShowInGraph="0" YOffset="0" IsAutoConfig="0" YResolution="200" MaxValue="65535" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.pwm_duty.c" />
             </Symbol>
             <Symbol>
-                <Options Name="ch1" Address="0x20000608" Type="unsigned short" TypeID="7" Size="2" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="0" YMaxSampled="1761" YAvgSampled="1713.27" Offset="14" ShowInGraph="0" YOffset="0" IsAutoConfig="0" YResolution="500" MaxValue="65535" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.adc_offset.ch1" />
+                <Options Name="sensor_angle" Address="0x200005DC" Type="int" TypeID="12" Size="4" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="255" YMinSampled="0" YMaxSampled="6282" YAvgSampled="5128.64" Offset="18" ShowInGraph="1" YOffset="0" IsAutoConfig="0" YResolution="5000" MaxValue="2147483647" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.angle.sensor_angle" />
             </Symbol>
             <Symbol>
-                <Options Name="ch2" Address="0x2000060A" Type="unsigned short" TypeID="7" Size="2" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="255" YMinSampled="0" YMaxSampled="1759" YAvgSampled="1711.32" Offset="16" ShowInGraph="0" YOffset="0" IsAutoConfig="0" YResolution="500" MaxValue="65535" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.adc_offset.ch2" />
+                <Options Name="elec_angle" Address="0x200005E4" Type="int" TypeID="12" Size="4" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="0" YMaxSampled="41993" YAvgSampled="19566.9" Offset="22" ShowInGraph="1" YOffset="0" IsAutoConfig="0" YResolution="20000" MaxValue="2147483647" File="F:\Aproject\Duck_proj\motor\stm32f103\MDK-ARM/../../user/drivers\foc_init.c" DrawStyle="0" NameWithParents="foc.angle.elec_angle" />
             </Symbol>
         </SelectedSymbols>
     </Project>

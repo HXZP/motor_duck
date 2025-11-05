@@ -13,8 +13,12 @@
 分区的位置可以通过目标矢量知道
 
 */
-#define FOC_PI 3.14159265f
-#define SQRT_3 1.73214285f
+#define FOC_PI (3141/1000)
+#define SQRT_3 17321/10000  //√3约等于1.7321，放大10000倍防止浮点运算
+#define INF_SQRT_3 10000/17321  //√3约等于1.7321，放大10000倍防止浮点运算
+
+#define OUT_MAX (1<<12)
+#define OUT_MAX_BIT (12)
 
 typedef enum{
     
@@ -25,16 +29,16 @@ typedef enum{
 
 typedef struct{
 
-    float a;
-    float b;
-    float c;
+    int32_t a;
+    int32_t b;
+    int32_t c;
 }foc_phase_volage_t;
 
 typedef struct{
 
-    float a;
-    float b;
-    float c;
+    int32_t a;
+    int32_t b;
+    int32_t c;
 }foc_phase_current_t;
 
 typedef struct{
@@ -47,17 +51,18 @@ typedef struct{
     uint8_t init_flag;
 }foc_current_adc_offset_t;
 
+//-+100*1000表示百分比，放大1000倍防止浮点运算
 typedef struct{
 
-    float d;
-    float q;
-    float theta;
+    int32_t d;
+    int32_t q;
+    int32_t theta;
 }foc_park_t;
 
 typedef struct{
 
-    float alpha;
-    float beta;
+    int32_t alpha;
+    int32_t beta;
 }foc_clarke_t;
 
 typedef struct{
@@ -72,7 +77,7 @@ typedef struct{
 //向量的号码和开启的半桥是对应的ABC对于位为高中低
 typedef struct{
 
-    float strength;//0~vector_voltage
+    int32_t strength;//0~vector_voltage
     union{
         uint8_t value;//0~7
         struct{
@@ -84,14 +89,14 @@ typedef struct{
         }half_bridge;
     }direction;
 
-    float percent;//0~100
+    int32_t percent;//0~100
 }foc_vector_t;
 
 typedef struct{
 
-    float X;
-    float Y;
-    float Z;
+    int32_t X;
+    int32_t Y;
+    int32_t Z;
 }foc_vector_percent_t;
 
 typedef struct{
@@ -114,21 +119,21 @@ typedef struct{
 typedef struct{
 
     //弧度
-    float sensor_angle;
-    float zero_angle;
-    float elec_angle;
-    float mech_angle;
+    int32_t sensor_angle;
+    int32_t zero_angle;
+    int32_t elec_angle;
+    int32_t mech_angle;
 	
-    float elec_angle360;
-    float mech_angle360;	
-	float mech_angle360_pre;
-	float mech_velocity_rpm;
+    int32_t elec_angle360;
+    int32_t mech_angle360;	
+	int32_t mech_angle360_pre;
+	int32_t mech_velocity_rpm;
 }foc_angle_t;
 
 typedef struct{
 
-    float master_voltage;//母线电压
-    float vector_voltage;//基本电压矢量:0~母线电压/sqrt(3)
+    int32_t master_voltage;//母线电压
+    int32_t vector_voltage;//基本电压矢量:0~母线电压/sqrt(3)
     uint8_t pole_pairs;//极对数
 }foc_mechine_info_t;
 
@@ -137,9 +142,9 @@ typedef struct{
     foc_state_e state;
 	
     uint8_t pole_pairs;//极对数
-    float master_voltage;//母线电压
+    int32_t master_voltage;//母线电压
 	
-    float zero_angle;
+    int32_t zero_angle;
 	
     uint16_t pwm_period;
 	
@@ -149,7 +154,7 @@ typedef struct{
     
 	void (*output)(uint16_t a, uint16_t b, uint16_t c);
     void (*delay)(uint32_t ms);
-    float (*get_angle_rad)(void);
+    int32_t (*get_angle_rad)(void);
 }foc_cfg_t;
 
 typedef struct{
