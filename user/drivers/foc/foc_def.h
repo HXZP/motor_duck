@@ -17,8 +17,9 @@
 #define SQRT_3 17321/10000  //√3约等于1.7321，放大10000倍防止浮点运算
 #define INF_SQRT_3 10000/17321  //√3约等于1.7321，放大10000倍防止浮点运算
 
-#define OUT_MAX (1<<12)
-#define OUT_MAX_BIT (12)
+#define OUT_MAX_BIT (15)
+#define OUT_MAX (1<<OUT_MAX_BIT)
+
 
 typedef enum{
     

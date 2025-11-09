@@ -103,7 +103,7 @@ int main(void)
   as5600Init();
   foc_root_init();
   
-  foc_set_target(0,1<<10,0);
+  foc_set_target(0,1<<13,0);
 
   /* USER CODE END 2 */
 //    CAN_TxHeaderTypeDef TxHeader;

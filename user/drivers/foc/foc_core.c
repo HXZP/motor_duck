@@ -45,7 +45,7 @@ const int8_t sector2vector_mask[6][2][3] = {
 
 
 #define LUT_SIZE 1572
-
+#define SIN_BIT 10
 // Q10格式的sin查找表 (0-π/2范围)
 static const int16_t sin_lut[LUT_SIZE] = {
      0,    1,    2,    3,    4,    5,    6,    7,    8,    9,   10,   11,   12,   13,   14,   15,
@@ -219,8 +219,8 @@ void foc_clarke(foc_clarke_t *clarke, const foc_phase_volage_t *phase_volage)
 */
 void foc_park(foc_park_t *park, const foc_clarke_t *clarke)
 {
-    park->d = (clarke->alpha * cos_int16(park->theta) + clarke->beta * sin_int16(park->theta))>>10;
-    park->q = (-clarke->alpha * sin_int16(park->theta) + clarke->beta * cos_int16(park->theta))>>10;
+    park->d = (clarke->alpha * cos_int16(park->theta) + clarke->beta * sin_int16(park->theta))>>SIN_BIT;
+    park->q = (-clarke->alpha * sin_int16(park->theta) + clarke->beta * cos_int16(park->theta))>>SIN_BIT;
 }
 /*
     **  @brief  反Clarke变换
@@ -242,8 +242,8 @@ void foc_repark(foc_clarke_t *clarke, const foc_park_t *park)
 {
     cos_out = cos_int16(park->theta);
     sin_out = sin_int16(park->theta);
-    clarke->alpha = (park->d * cos_int16(park->theta) - park->q * sin_int16(park->theta))>>10;
-    clarke->beta = (park->d * sin_int16(park->theta) + park->q * cos_int16(park->theta))>>10;
+    clarke->alpha = (park->d * cos_int16(park->theta) - park->q * sin_int16(park->theta))>>SIN_BIT;
+    clarke->beta = (park->d * sin_int16(park->theta) + park->q * cos_int16(park->theta))>>SIN_BIT;
 }
 
 /*

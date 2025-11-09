@@ -59,8 +59,8 @@ void foc_root_init(void)
     
     GPIO_Init();
     
-    HAL_TIM_OC_Start_IT(&htim1, TIM_CHANNEL_4);
-    HAL_TIM_Base_Start_IT(&htim1);
+//    HAL_TIM_OC_Start_IT(&htim1, TIM_CHANNEL_4);
+//    HAL_TIM_Base_Start_IT(&htim1);
 
     foc_adc_offset_get(&foc, &injected_data[0], &injected_data[1]);    
     
@@ -156,14 +156,14 @@ void TIM2_IRQHandler(void)
 //    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 100);
 //    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
     
-    
+    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_8,1);
 //    HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8);
     
     foc_get_angle();  
     foc_control(&foc);   
     
     HAL_TIM_IRQHandler(&htim2);
-    
+    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_8,0);
 //    HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8);
 }
 
