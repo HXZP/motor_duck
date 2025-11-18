@@ -210,7 +210,7 @@ int32_t cos_int16(int32_t angle_x1000) {
 */
 void foc_clarke(foc_clarke_t *clarke, const foc_phase_volage_t *phase_volage)
 {
-    clarke->alpha = ((phase_volage->a - phase_volage->b - phase_volage->c)>>2)/3;
+    clarke->alpha = ((phase_volage->a - phase_volage->b - phase_volage->c)>>1)/3;
     clarke->beta = (phase_volage->b - phase_volage->c)*INF_SQRT_3;
 }
 /*
@@ -229,8 +229,8 @@ void foc_park(foc_park_t *park, const foc_clarke_t *clarke)
 void foc_reclarke(foc_phase_volage_t *phase_volage, const foc_clarke_t *clarke)
 {
     phase_volage->a = clarke->alpha;
-    phase_volage->b = (-clarke->alpha + clarke->beta * SQRT_3)>>2;
-    phase_volage->c = (-clarke->alpha - clarke->beta * SQRT_3)>>2;
+    phase_volage->b = (-clarke->alpha + clarke->beta * SQRT_3)>>1;
+    phase_volage->c = (-clarke->alpha - clarke->beta * SQRT_3)>>1;
 }
 /*
     **  @brief  反Park变换
@@ -262,8 +262,8 @@ void foc_get_sector(foc_sector_t *sector, const foc_clarke_t *clarke)
 void foc_get_vector_percent(foc_vector_percent_t *vector_percent, const float vector_voltage, const foc_clarke_t *clarke)
 {
     vector_percent->X = clarke->beta;
-    vector_percent->Y = (clarke->alpha * SQRT_3 + clarke->beta)>>2;
-    vector_percent->Z = (-clarke->alpha * SQRT_3 + clarke->beta)>>2;
+    vector_percent->Y = (clarke->alpha * SQRT_3 + clarke->beta)>>1;
+    vector_percent->Z = (-clarke->alpha * SQRT_3 + clarke->beta)>>1;
 }
 
 void foc_get_vector_normalize(foc_output_vector_t *vector, const foc_vector_percent_t *vector_percent, const foc_sector_t *sector)
@@ -297,8 +297,8 @@ void foc_get_vector_normalize(foc_output_vector_t *vector, const foc_vector_perc
     }
     else
     {
-        vector->vector_0.percent = (OUT_MAX - percent_x - percent_y)/2;
-        vector->vector_7.percent = (OUT_MAX - percent_x - percent_y)/2;		
+        vector->vector_0.percent = (OUT_MAX - percent_x - percent_y)>>1;
+        vector->vector_7.percent = (OUT_MAX - percent_x - percent_y)>>1;		
     }
 
     vector->vector_x.direction.value = sector2vector[sector->value - 1][0];
