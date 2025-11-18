@@ -2,10 +2,10 @@
 #include "foc/foc_core.h"
 #include "as5600.h"
 
-#include "stm32f1xx_hal.h"          // HAL库核心头文件
-#include "stm32f1xx_hal_tim.h"      // 定时器HAL库
-#include "stm32f1xx_hal_gpio.h"     // GPIO HAL库
-#include "stm32f1xx_hal_rcc.h"      // 时钟HAL库
+#include "stm32g4xx_hal.h"          // HAL库核心头文件
+#include "stm32g4xx_hal_tim.h"      // 定时器HAL库
+#include "stm32g4xx_hal_gpio.h"     // GPIO HAL库
+#include "stm32g4xx_hal_rcc.h"      // 时钟HAL库
 #include <stdio.h>
 
 //extern DMA_HandleTypeDef hdma_adc1;

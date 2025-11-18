@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32G431xx,ARM_MATH_CM4,__TARGET_FPU_VFP</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G4xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G4xx/Include;../Drivers/CMSIS/Include;..\..\user;..\..\user\drivers\foc;..\..\user\drivers\rtt;..\..\user\drivers</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -558,6 +558,61 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>user</GroupName>
+          <Files>
+            <File>
+              <FileName>as5600.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\as5600.c</FilePath>
+            </File>
+            <File>
+              <FileName>foc_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\foc_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>log.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\log.c</FilePath>
+            </File>
+            <File>
+              <FileName>soft_iic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\soft_iic.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user/rtt</GroupName>
+          <Files>
+            <File>
+              <FileName>SEGGER_RTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\rtt\SEGGER_RTT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT_printf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\rtt\SEGGER_RTT_printf.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>user/foc</GroupName>
+          <Files>
+            <File>
+              <FileName>foc_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\foc\foc_core.c</FilePath>
+            </File>
+            <File>
+              <FileName>foc_math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\user\drivers\foc\foc_math.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
@@ -576,5 +631,14 @@
     </components>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>stm32g431</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

@@ -2,7 +2,7 @@
 #define __IIC_DRV_H
 
 #include <stdint.h>
-#include "stm32f1xx_hal.h"
+#include "stm32g4xx_hal.h"
 
 // 软件I2C引脚定义
 #define I2C_SCL_PIN    GPIO_PIN_7
