@@ -1,7 +1,7 @@
 #ifndef __FOC_DEF_H 
 #define __FOC_DEF_H
 
-#include "math.h"
+
 #include "stdint.h"
 
 /*

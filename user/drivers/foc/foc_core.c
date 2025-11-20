@@ -4,6 +4,7 @@
 */
 #include "foc/foc_core.h"
 #include <stdlib.h>
+#include "arm_math.h"
 /*
     **  @brief  N值到扇区
 */
@@ -58,8 +59,8 @@ void foc_clarke(foc_clarke_t *clarke, const foc_phase_volage_t *phase_volage)
 */
 void foc_park(foc_park_t *park, const foc_clarke_t *clarke)
 {
-    park->d = clarke->alpha * cos(park->theta) + clarke->beta * sin(park->theta);
-    park->q =-clarke->alpha * sin(park->theta) + clarke->beta * cos(park->theta);
+    park->d = clarke->alpha * arm_cos_f32(park->theta) + clarke->beta * arm_sin_f32(park->theta);
+    park->q =-clarke->alpha * arm_sin_f32(park->theta) + clarke->beta * arm_cos_f32(park->theta);
 }
 /*
     **  @brief  反Clarke变换
@@ -77,8 +78,8 @@ void foc_reclarke(foc_phase_volage_t *phase_volage, const foc_clarke_t *clarke)
 */
 void foc_repark(foc_clarke_t *clarke, const foc_park_t *park)
 {
-    clarke->alpha = park->d * cos(park->theta) - park->q * sin(park->theta);
-    clarke->beta = park->d * sin(park->theta) + park->q * cos(park->theta);
+    clarke->alpha = park->d * arm_cos_f32(park->theta) - park->q * arm_sin_f32(park->theta);
+    clarke->beta = park->d * arm_sin_f32(park->theta) + park->q * arm_cos_f32(park->theta);
 }
 
 /*

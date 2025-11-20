@@ -36,9 +36,9 @@ foc_cfg_t cfg = {
 
 	.pole_pairs = 7,
 	.master_voltage = 12,
-	.pwm_period = 1600,
+	.pwm_period = 4250,
 	
-	.pwm_hz = 10000,
+	.pwm_hz = 20000,
 	.control_hz = 1000,
 	.sensor_hz = 5000,
     
@@ -59,10 +59,10 @@ void foc_root_init(void)
     
     GPIO_Init();
     
-    HAL_TIM_OC_Start_IT(&htim1, TIM_CHANNEL_4);
+//    HAL_TIM_OC_Start_IT(&htim1, TIM_CHANNEL_4);
     HAL_TIM_Base_Start_IT(&htim1);
 
-    foc_adc_offset_get(&foc, &injected_data[0], &injected_data[1]);    
+    //foc_adc_offset_get(&foc, &injected_data[0], &injected_data[1]);    
     
     foc_output_enable(1);
     foc_zero_reset(&foc);
@@ -149,23 +149,20 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
     }
 }
 
-//401us
-void TIM2_IRQHandler(void)
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-//    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 50);
-//    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 100);
-//    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 0);
-    
-    
-//    HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8);
-    
+  /* 判断是否是TIM2的更新中断 */
+  if (htim->Instance == TIM2)
+  {
+//    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_9,1);
     foc_get_angle();  
     foc_control(&foc);   
-    
+//    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_9,0);
+      
     HAL_TIM_IRQHandler(&htim2);
-    
-//    HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_8);
+  }
 }
+
 
 //GPIO_PIN_14 Logic high enables OUT. Internalpulldown
 //GPIO_PIN_3 Active-low reset input initializesinternal logicanddisablesthe

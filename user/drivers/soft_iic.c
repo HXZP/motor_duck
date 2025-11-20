@@ -4,7 +4,7 @@
 // I2C延时函数（基于68MHz系统时钟）
 static void I2C_Delay(void)
 {
-    volatile uint32_t delay = 10;  // 调整这个值来改变时序
+    volatile uint32_t delay = 1;  // 调整这个值来改变时序
     while(delay--);
 }
 
@@ -17,11 +17,17 @@ void I2C_Init(void)
     __HAL_RCC_GPIOB_CLK_ENABLE();
     
     // 配置SCL和SDA为开漏输出
-    GPIO_InitStruct.Pin = I2C_SCL_PIN | I2C_SDA_PIN;
+    GPIO_InitStruct.Pin = I2C_SDA_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(I2C_SDA_PORT, &GPIO_InitStruct);
+    
+    GPIO_InitStruct.Pin = I2C_SCL_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(I2C_SCL_PORT, &GPIO_InitStruct);
     
     // 初始状态：SCL和SDA都置高
     HAL_GPIO_WritePin(I2C_SCL_PORT, I2C_SCL_PIN, GPIO_PIN_SET);

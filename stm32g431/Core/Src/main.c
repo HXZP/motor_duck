@@ -20,13 +20,15 @@
 #include "main.h"
 #include "adc.h"
 #include "fdcan.h"
-#include "i2c.h"
 #include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "log.h"
+#include "soft_iic.h"
+#include "as5600.h"
+#include "foc_init.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,11 +94,15 @@ int main(void)
   MX_GPIO_Init();
   MX_ADC1_Init();
   MX_FDCAN1_Init();
-  MX_I2C1_Init();
   MX_TIM1_Init();
   MX_ADC2_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  log_init();
+  I2C_Init();
+  as5600Init();
+  foc_root_init();
+  foc_set_target(0,30,0);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,7 +113,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_9); 
-    HAL_Delay(500);
+    HAL_Delay(1);
   }
   /* USER CODE END 3 */
 }
